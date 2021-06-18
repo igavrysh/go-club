@@ -20,11 +20,21 @@ func (c Controller) Index(w http.ResponseWriter, req *http.Request) {
 	var e map[string]error
 	var un string
 	var ue string
+	var pendingUser = models.UserView{}
 	if req.Method == http.MethodPost {
 		// get form values
 		un = req.FormValue("name")
 		ue = req.FormValue("email")
 		_, e = service.AddUser(un, ue)
+		if e != nil {
+			pendingUser = models.UserView{
+				Number:           0,
+				Name:             un,
+				Email:            ue,
+				RegistrationDate: "",
+			}
+		}
+
 	}
 	users := service.Users()
 	var uvs = models.UsersView{}
@@ -39,12 +49,7 @@ func (c Controller) Index(w http.ResponseWriter, req *http.Request) {
 		})
 	}
 	uvs = models.UsersView{
-		PendingUser: models.UserView{
-			Number:           0,
-			Name:             un,
-			Email:            ue,
-			RegistrationDate: "",
-		},
+		PendingUser: pendingUser,
 		Errors: e,
 		Users: uv,
 	}

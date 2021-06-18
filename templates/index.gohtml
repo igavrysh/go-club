@@ -11,16 +11,20 @@
 
 <h2>New member</h2>
 <form method="POST">
-
+    <ul>
+        <li>
             Name:<input type="text" name="name" placeholder="John Appleseed" value="{{ .PendingUser.Name }}" />
-
+            <div style="color:red">{{index .Errors "name"}}</div>
+        </li>
+        <li>
             Email:<input type="text" name="email" placeholder="john.appleseed@apple.com" value="{{ .PendingUser.Email }}" />
-
-        <p>{{.Error}}</p>
+            <div style="color:red">{{index .Errors "email"}}</div>
+        </li>
+    </ul>
     </br>
+    <div style="color:red">{{index .Errors "general"}}</div>
     </br>
-    <input type="submit" id="add" value="Add">
-
+    <input type="submit" id="add" value="Add" />
 </form>
 <form method="POST" action="/delete" name="xdel">
     <button type="delete" id="xbutton">Clear</button>
