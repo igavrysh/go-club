@@ -7,3 +7,16 @@ type User struct {
 	Email string
 	RegistrationDate time.Time
 }
+
+type UserView struct {
+	Number int
+	Name string
+	Email string
+	RegistrationDate string
+}
+
+type UsersView struct {
+	PendingUser UserView
+	Errors map[string]error
+	Users []UserView
+}
