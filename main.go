@@ -17,5 +17,6 @@ func main() {
 	http.HandleFunc("/", c.Index)
 	http.HandleFunc("/delete", c.Delete)
 	http.Handle("/favicon.ico", http.NotFoundHandler())
+	http.Handle("/public/", http.StripPrefix("/public", http.FileServer(http.Dir("public"))))
 	http.ListenAndServe(":80", nil)
 }

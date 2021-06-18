@@ -4,53 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Go Club</title>
+    <link rel="stylesheet" href="../public/main.css">
+
 </head>
 <body>
 
 <h1>Welcome to the Club!</h1>
 
-<h2>New member</h2>
 <form method="POST">
-    <ul>
-        <li>
-            Name:<input type="text" name="name" placeholder="John Appleseed" value="{{ .PendingUser.Name }}" />
+    <ul class="form-style-1">
+        <li><label>Add New Member</label></li>
+        <li><label>Full Name <span class="required">*</span></label>
+            <input type="text" name="name" class="field-long" placeholder="John Appleseed" value="{{ .PendingUser.Name }}"/>
             <div style="color:red">{{index .Errors "name"}}</div>
-        </li>
         <li>
-            Email:<input type="text" name="email" placeholder="john.appleseed@apple.com" value="{{ .PendingUser.Email }}" />
+            <label>Email <span class="required">*</span></label>
+            <input type="text" name="email" class="field-long" placeholder="john.appleseed@apple.com" value="{{ .PendingUser.Email }}"/>
             <div style="color:red">{{index .Errors "email"}}</div>
         </li>
+        <li>
+            <span class="box"><input type="submit" value="Add" /></span>
+        </li>
     </ul>
-    </br>
-    <div style="color:red">{{index .Errors "general"}}</div>
-    </br>
-    <input type="submit" id="add" value="Add" />
-</form>
-<form method="POST" action="/delete" name="xdel">
-    <button type="delete" id="xbutton">Clear</button>
 </form>
 
 
 {{with .Users}}
     <h2>Members</h2>
-        <table border="1">
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Registration Date</th>
-            </tr>
-            {{range .}}
-                <tr>
-                    <td>{{.Number}}</td>
-                    <td>{{.Name}}</td>
-                    <td>{{.Email}}</td>
-                    <td>{{.RegistrationDate}}</td>
-                </tr>
-            {{end}}
-        </table>
+    <form method="POST" action="/delete" name="xdel">
+        <ul class="form-style-1">
+            <li>
+                <input type="submit" value="Clear Members" />
+            </li>
+        </ul>
+    </form>
 
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Registration Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range .}}
+            <tr>
+                <td>{{.Number}}</td>
+                <td>{{.Name}}</td>
+                <td>{{.Email}}</td>
+                <td>{{.RegistrationDate}}</td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
 {{end}}
+
 
 </body>
 </html>
