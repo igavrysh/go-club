@@ -13,12 +13,12 @@
 
 <form method="POST">
     <ul class="form-style-1">
-        <li><label>Add New Member</label></li>
-        <li><label>Full Name <span class="required">*</span></label>
+        <li><label>New Member</label></li>
+        <li><label>Name:<span class="required">*</span></label>
             <input type="text" name="name" class="field-long" placeholder="John Appleseed" value="{{ .PendingUser.Name }}"/>
             <div style="color:red">{{index .Errors "name"}}</div>
         <li>
-            <label>Email <span class="required">*</span></label>
+            <label>Email:<span class="required">*</span></label>
             <input type="text" name="email" class="field-long" placeholder="john.appleseed@apple.com" value="{{ .PendingUser.Email }}"/>
             <div style="color:red">{{index .Errors "email"}}</div>
         </li>
@@ -30,7 +30,7 @@
 
 
 {{with .Users}}
-    <h2>Members</h2>
+    <h1>Members</h1>
     <form method="POST" action="/delete" name="xdel">
         <ul class="form-style-1">
             <li>
