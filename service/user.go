@@ -15,6 +15,10 @@ func UserExists(email string) bool {
 	return exists
 }
 
+func UsersLen() int {
+	return len(usersDB)
+}
+
 func AddUser(name string, email string) (models.User, map[string]error) {
 	var errs map[string]error = map[string]error{}
 
