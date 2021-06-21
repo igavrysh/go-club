@@ -8,6 +8,8 @@ type User struct {
 	RegistrationDate time.Time
 }
 
+
+
 type UserView struct {
 	Number int
 	Name string
