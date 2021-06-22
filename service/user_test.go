@@ -154,7 +154,3 @@ func TestClearUsers(t *testing.T) {
 		t.Errorf("Users length should be 0 after all users are removed")
 	}
 }
-
-
-
-
